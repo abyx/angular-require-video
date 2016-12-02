@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+    <body ng-app=app>
+        <script src="angular.js"></script>
+        <script src="app.js"></script>
+        <script src="inbox.component.js"></script>
+        <script src="mail.component.js"></script>
+
+        <inbox></inbox>
+
+        <style>
+            body {
+                font-family: Helvetica;
+                color: #333;
+            }
+
+            button {
+                box-shadow: none;
+                border: 1px solid #4bf8af;
+                border-radius: 4px;
+                background-color: #4bf8af;
+            }
+
+            button:disabled {
+                background-color: white;
+                border: 1px solid #eee;
+                cursor: not-allowed;
+            }
+
+            mail > div {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                height: 2em;
+                cursor: pointer;
+            }
+
+            mail .selected {
+                background-color: #ccc;
+            }
+
+            mail input {
+                margin-right: 1em;
+            }
+
+            mail .from {
+                font-size: 0.8em;
+                margin-right: 1em;
+            }
+        </style>
+    </body>
+</html>
