@@ -4,12 +4,7 @@ angular.module('app').component('inbox', {
       <button ng-disabled="!$ctrl.hasSelection()">Archive</button>
       <button ng-disabled="!$ctrl.hasSelection()">Star</button>
     </div>
-    <mail ng-repeat="mail in $ctrl.mails"
-      mail="mail" select-only="$ctrl.selectOnly(mail)"
-      toggle-multi-select="$ctrl.toggleMultiSelect(mail, selected)"
-      is-single-selected="$ctrl.isSingleSelected(mail)"
-      is-multi-selected="$ctrl.isMultiSelected(mail)"
-    </mail>
+    <mail ng-repeat="mail in $ctrl.mails" mail="mail"></mail>
   `,
   controller: function() {
     this.mails = [

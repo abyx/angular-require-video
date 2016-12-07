@@ -1,8 +1,8 @@
 angular.module('app').component('mail', {
   template: `
     <div ng-class="{selected: $ctrl.isSelected()}"
-         ng-click="$ctrl.selectOnly({mail: $ctrl.mail})">
-      <input ng-checked="$ctrl.isMultiSelected({mail: $ctrl.mail})"
+         ng-click="$ctrl.inboxCtrl.selectOnly($ctrl.mail)">
+      <input ng-checked="$ctrl.inboxCtrl.isMultiSelected($ctrl.mail)"
              ng-click="$ctrl.checkboxChecked($event)"
              type="checkbox">
       <span class="from">{{ $ctrl.mail.from }}:</span>
@@ -10,23 +10,19 @@ angular.module('app').component('mail', {
     </div>
   `,
   bindings: {
-    mail: '<',
-    selectOnly: '&',
-    toggleMultiSelect: '&',
-    isSingleSelected: '&',
-    isMultiSelected: '&'
+    mail: '<'
+  },
+  require: {
+    inboxCtrl: '^^inbox'
   },
   controller: function() {
     this.checkboxChecked = ($event) => {
       $event.stopPropagation();
 
-      this.toggleMultiSelect({
-        mail: this.mail,
-        selected: !this.isMultiSelected({mail: this.mail})
-      });
+      this.inboxCtrl.toggleMultiSelect(this.mail, !this.inboxCtrl.isMultiSelected(this.mail));
     }
 
-    this.isSelected = () => this.isSingleSelected({mail: this.mail})
-      || this.isMultiSelected({mail: this.mail});
+    this.isSelected = () => this.inboxCtrl.isSingleSelected(this.mail)
+      || this.inboxCtrl.isMultiSelected(this.mail);
   }
 });
